@@ -1,0 +1,139 @@
+<html <!DOCTYPE html>
+
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+        <style>
+        html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
+
+        </style>
+
+
+    </head>
+    <body>
+
+
+            <header id="main-header" class="py-2 bg-primary text-white" >
+                    <div class="wrapper container">
+
+
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+
+                          <h1 ><i class="fa fa-gear"></i> Customer Data Analysis Project</h1>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </header>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                    <div class="container">
+
+                      <button
+                        class="navbar-toggler"
+                        data-toggle="collapse"
+                        data-target="#navbarNav"
+                      >
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+
+
+                        <ul class="navbar-nav ml-auto">
+                          <li class="nav-item dropdown mr-3">
+
+                            <div class="dropdown-menu">
+                              <a href="/profile" class="dropdown-item">
+                                <i class="fa fa-user-circle"></i> Profile
+                              </a>
+                              <a href="/settings" class="dropdown-item">
+                                <i class="fa fa-gear"></i> Settings
+                              </a>
+                            </div>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/logout" class="nav-link" style="color:#343a40">
+                              <i class="fa fa-user-times"></i> i
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+
+
+                        <div class="row justify-content-center">
+                    <div class="col-md-6 ">
+<!-- Default form login -->
+
+<form class="text-center border border-light p-5" method="post" action="get_report">
+{% csrf_token %}
+        <p class="h4 mb-4">Please Enter The Data</p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    Charge Of Date
+        <input type="date" name="CODate" class="form-control mb-4" placeholder="Charge Of Date">
+    Account Open Date
+        <input type="date" name="AccountOpenDate" class="form-control mb-4" placeholder="Account Open Date">
+    Current Balance
+        <input type="text" name="CurBalance" class="form-control mb-4" placeholder="Current Balance">
+    Date Of Birth
+        <input type="date" name="pbirthdate" class="form-control mb-4" placeholder="Date Of Birth">
+    First City
+        <input type="text" name="firstcity" class="form-control mb-4" placeholder="First City">
+    First Zip Postal
+        <input type="text" name="firstzippostal" class="form-control mb-4" placeholder="First Zip Postal">
+
+        <!-- Sign in button -->
+<!--        <button class="btn btn-info btn-block my-4" type="submit">Register</button>-->
+    <input type="submit" value="register" class="btn btn-primary">
+    </form>
+</div>
+<div class="row justify-content-center">
+</div>
+</div>
+
+    <!-- Default form login -->
+
+</br></br>
+
+<div style="text-align: center;">
+    <hr>
+        <p>&copy 2021,Customer Data Analysis Project</p>
+    </hr>
+    </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <script src="" async defer></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
