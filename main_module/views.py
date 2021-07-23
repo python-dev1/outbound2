@@ -15,34 +15,36 @@ def calculate_age(born):
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 def predsingle():
-    from sklearn.cluster import KMeans
-    import pandas as pd
-    df = pd.read_excel("main_module/templates/Data set for Sam and Jon Project.xlsx")
-    df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
-    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
-    a = df['PBirthdate'].tolist()
-    myage = []
-    for x in a:
-        abc = calculate_age(x)
-        myage.append(abc)
+#     from sklearn.cluster import KMeans
+#     import pandas as pd
+#     df = pd.read_excel("main_module/templates/Data set for Sam and Jon Project.xlsx")
+#     df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
+#     df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
+#     a = df['PBirthdate'].tolist()
+#     myage = []
+#     for x in a:
+#         abc = calculate_age(x)
+#         myage.append(abc)
 
-    ages = pd.Series(myage)
-    df['Age'] = ages
-    df['Age'].fillna((df['Age'].median()), inplace=True)
-    df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
-    from sklearn.cluster import KMeans
-    X1 = df[['Age', '1stZipPostal']].iloc[:, :].values
-    inertia = []
-    for n in range(1, 11):
-        algorithm = (KMeans(n_clusters=n, init='k-means++', n_init=10, max_iter=300,
-                            tol=0.0001, random_state=111, algorithm='elkan'))
-        algorithm.fit(X1)
-        inertia.append(algorithm.inertia_)
-    total = len(df['Age'])
-    centros = []
-    for x in range((total)):
-        centros.append(ml_metric(1, 10))
-    scoreval=centros[-1]
+#     ages = pd.Series(myage)
+#     df['Age'] = ages
+#     df['Age'].fillna((df['Age'].median()), inplace=True)
+#     df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
+#     from sklearn.cluster import KMeans
+#     X1 = df[['Age', '1stZipPostal']].iloc[:, :].values
+#     inertia = []
+#     for n in range(1, 11):
+#         algorithm = (KMeans(n_clusters=n, init='k-means++', n_init=10, max_iter=300,
+#                             tol=0.0001, random_state=111, algorithm='elkan'))
+#         algorithm.fit(X1)
+#         inertia.append(algorithm.inertia_)
+#     total = len(df['Age'])
+#     centros = []
+#     for x in range((total)):
+#         centros.append(ml_metric(1, 10))
+    
+#     scoreval=centros[-1]
+    scoreval=ml_metric(1, 10)
     return scoreval
 
 def predfile(filename):
@@ -98,10 +100,10 @@ def file_score(request):
     from .models import files
     mydocument = files.objects.create(myfile=file)
     mydocument.save()
-    obj=files.objects.last()
+#     obj=files.objects.last()
    
-    fname=obj.myfile.path
-    myscorefile=predfile(fname)
+#     fname=obj.myfile.path
+#     myscorefile=predfile(fname)
     return render(request,"index.html")
 #     import pandas as pd
 #     with BytesIO() as b:
