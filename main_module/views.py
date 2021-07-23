@@ -94,13 +94,13 @@ from io import BytesIO
 import xlsxwriter
 
 def file_score(request):
+    file = request.FILES["myf"]
+    from .models import files
+    mydocument = files.objects.create(myfile=file)
+    mydocument.save()
+    obj=files.objects.last()
     return render(request,"index.html")
 
-#     file = request.FILES["myf"]
-#     from .models import files
-#     mydocument = files.objects.create(myfile=file)
-#     mydocument.save()
-#     obj=files.objects.last()
 #     fname=obj.myfile.path
 #     myscorefile=predfile(fname)
 #     import pandas as pd
