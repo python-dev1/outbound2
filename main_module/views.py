@@ -94,27 +94,29 @@ from io import BytesIO
 import xlsxwriter
 
 def file_score(request):
-    file = request.FILES["myf"]
-    from .models import files
-    mydocument = files.objects.create(myfile=file)
-    mydocument.save()
-    obj=files.objects.last()
-    fname=obj.myfile.path
-    myscorefile=predfile(fname)
-    import pandas as pd
-    with BytesIO() as b:
-        # Use the StringIO object as the filehandle.
-        writer = pd.ExcelWriter(b, engine='xlsxwriter')
-        myscorefile.to_excel(writer, sheet_name='Sheet1')
-        writer.save()
-        # Set up the Http response.
-        filename = 'Results.xlsx'
-        response = HttpResponse(
-        b.getvalue(),
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            )
-        response['Content-Disposition'] = 'attachment; filename=%s' % filename
-        return response
+    return render(request,"index.html")
+
+#     file = request.FILES["myf"]
+#     from .models import files
+#     mydocument = files.objects.create(myfile=file)
+#     mydocument.save()
+#     obj=files.objects.last()
+#     fname=obj.myfile.path
+#     myscorefile=predfile(fname)
+#     import pandas as pd
+#     with BytesIO() as b:
+#         # Use the StringIO object as the filehandle.
+#         writer = pd.ExcelWriter(b, engine='xlsxwriter')
+#         myscorefile.to_excel(writer, sheet_name='Sheet1')
+#         writer.save()
+#         # Set up the Http response.
+#         filename = 'Results.xlsx'
+#         response = HttpResponse(
+#         b.getvalue(),
+#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+#             )
+#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
+#         return response
 
 
 
