@@ -99,10 +99,10 @@ def file_score(request):
     mydocument = files.objects.create(myfile=file)
     mydocument.save()
     obj=files.objects.last()
+   
+    fname=obj.myfile.path
+    myscorefile=predfile(fname)
     return render(request,"index.html")
-
-#     fname=obj.myfile.path
-#     myscorefile=predfile(fname)
 #     import pandas as pd
 #     with BytesIO() as b:
 #         # Use the StringIO object as the filehandle.
