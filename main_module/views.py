@@ -13,7 +13,9 @@ from datetime import date
 def calculate_age(born):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+import time
 
+  
 def predsingle():
 #     from sklearn.cluster import KMeans
 #     import pandas as pd
@@ -45,6 +47,7 @@ def predsingle():
     
 #     scoreval=centros[-1]
     scoreval=ml_metric(1, 10)
+    time.sleep(8)
     return scoreval
 
 def predfile(filename):
