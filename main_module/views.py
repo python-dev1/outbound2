@@ -103,7 +103,7 @@ from io import BytesIO
 import xlsxwriter
 
 def file_score(request):
-    file = request.FILES["myf"]
+#     file = request.FILES["myf"]
 #     from .models import files
 #     mydocument = files.objects.create(myfile=file)
 #     mydocument.save()
