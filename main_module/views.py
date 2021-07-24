@@ -104,16 +104,16 @@ import xlsxwriter
 
 def file_score(request):
     file = request.FILES["myf"]
-    from .models import files
-    mydocument = files.objects.create(myfile=file)
-    mydocument.save()
-    obj=files.objects.last()
+#     from .models import files
+#     mydocument = files.objects.create(myfile=file)
+#     mydocument.save()
+#     obj=files.objects.last()
 
-    fname=obj.myfile.path
+#     fname=obj.myfile.path
     # myscorefile=predfile(fname)
-    from sklearn.cluster import KMeans
+#     from sklearn.cluster import KMeans
     import pandas as pd
-    df = pd.read_excel(fname)
+    df = pd.read_excel(file)
     index = df.index
     total = len(index)
     # total = len(df['Age'])
