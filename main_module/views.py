@@ -109,23 +109,43 @@ def file_score(request):
     mydocument.save()
     obj=files.objects.last()
 
-#     fname=obj.myfile.path
-#     # myscorefile=predfile(fname)
-#     mydata={}
-#     mydata['path']=fname
-#     return render(request, "h.html",mydata)
-#     obj=files.objects.last()
-   
     fname=obj.myfile.path
+    # myscorefile=predfile(fname)
+    from sklearn.cluster import KMeans
+    import pandas as pd
     df = pd.read_excel(fname)
     index = df.index
     total = len(index)
+    # total = len(df['Age'])
     centros = []
-    for x in range((total)):
+    for x in range(total):
         centros.append(ml_metric(1, 100))
-    scores_=pd.Series(centros)
-    df['Score']=scores_
+    scores_ = pd.Series(centros)
+    df['Score'] = scores_
     return HttpResponse(df.to_html())
+#     file = request.FILES["myf"]
+#     from .models import files
+#     mydocument = files.objects.create(myfile=file)
+#     mydocument.save()
+#     obj=files.objects.last()
+
+# #     fname=obj.myfile.path
+# #     # myscorefile=predfile(fname)
+# #     mydata={}
+# #     mydata['path']=fname
+# #     return render(request, "h.html",mydata)
+# #     obj=files.objects.last()
+   
+#     fname=obj.myfile.path
+#     df = pd.read_excel(fname)
+#     index = df.index
+#     total = len(index)
+#     centros = []
+#     for x in range((total)):
+#         centros.append(ml_metric(1, 100))
+#     scores_=pd.Series(centros)
+#     df['Score']=scores_
+#     return HttpResponse(df.to_html())
 #     myscorefile=predfile(fname)
 #     return render(request,"index.html")
 #     import pandas as pd
