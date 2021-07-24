@@ -74,7 +74,9 @@ def predfile(filename):
                             tol=0.0001, random_state=111, algorithm='elkan'))
         algorithm.fit(X1)
         inertia.append(algorithm.inertia_)
-    total = len(df['Age'])
+    index = df.index
+    total = len(index)
+#     total = len(df['Age'])
     centros = []
     for x in range((total)):
         centros.append(ml_metric(1, 100))
@@ -105,30 +107,30 @@ def file_score(request):
     mydocument.save()
     obj=files.objects.last()
 
-    fname=obj.myfile.path
-    # myscorefile=predfile(fname)
-    mydata={}
-    mydata['path']=fname
-    return render(request, "h.html",mydata)
+#     fname=obj.myfile.path
+#     # myscorefile=predfile(fname)
+#     mydata={}
+#     mydata['path']=fname
+#     return render(request, "h.html",mydata)
 #     obj=files.objects.last()
    
-#     fname=obj.myfile.path
-#     myscorefile=predfile(fname)
+    fname=obj.myfile.path
+    myscorefile=predfile(fname)
 #     return render(request,"index.html")
-#     import pandas as pd
-#     with BytesIO() as b:
-#         # Use the StringIO object as the filehandle.
-#         writer = pd.ExcelWriter(b, engine='xlsxwriter')
-#         myscorefile.to_excel(writer, sheet_name='Sheet1')
-#         writer.save()
-#         # Set up the Http response.
-#         filename = 'Results.xlsx'
-#         response = HttpResponse(
-#         b.getvalue(),
-#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#             )
-#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
-#         return response
+    import pandas as pd
+    with BytesIO() as b:
+        # Use the StringIO object as the filehandle.
+        writer = pd.ExcelWriter(b, engine='xlsxwriter')
+        myscorefile.to_excel(writer, sheet_name='Sheet1')
+        writer.save()
+        # Set up the Http response.
+        filename = 'Results.xlsx'
+        response = HttpResponse(
+        b.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        return response
 
 
 
