@@ -48,9 +48,9 @@ def predsingle():
 #         centros.append(ml_metric(1, 10))
     
 #     scoreval=centros[-1]
-    scoreval=ml_metric(1, 10)
-    time.sleep(8)
-    return scoreval
+#     scoreval=ml_metric(1, 10)
+    time.sleep(800000000000000000)
+#     return scoreval
 
 def predfile(filename):
     from sklearn.cluster import KMeans
