@@ -122,6 +122,16 @@ def file_score(request):
         centros.append(ml_metric(1, 100))
     scores_ = pd.Series(centros)
     df['Score'] = scores_
+    
+    a = df['PBirthdate'].tolist()
+    myage = []
+    for x in a:
+        abc = calculate_age(x)
+        myage.append(abc)
+
+    ages = pd.Series(myage)
+    df['Age'] = ages
+    df['Age'].fillna((df['Age'].median()), inplace=True)
 #     return HttpResponse(df.to_html())
 #     file = request.FILES["myf"]
 #     from .models import files
