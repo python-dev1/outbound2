@@ -103,11 +103,18 @@ def file_score(request):
     from .models import files
     mydocument = files.objects.create(myfile=file)
     mydocument.save()
+    obj=files.objects.last()
+
+    fname=obj.myfile.path
+    # myscorefile=predfile(fname)
+    mydata={}
+    mydata['path']=fname
+    return render(request, "h.html",mydata)
 #     obj=files.objects.last()
    
 #     fname=obj.myfile.path
 #     myscorefile=predfile(fname)
-    return render(request,"index.html")
+#     return render(request,"index.html")
 #     import pandas as pd
 #     with BytesIO() as b:
 #         # Use the StringIO object as the filehandle.
