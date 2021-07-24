@@ -122,7 +122,7 @@ def file_score(request):
         centros.append(ml_metric(1, 100))
     scores_ = pd.Series(centros)
     df['Score'] = scores_
-    return HttpResponse(df.to_html())
+#     return HttpResponse(df.to_html())
 #     file = request.FILES["myf"]
 #     from .models import files
 #     mydocument = files.objects.create(myfile=file)
@@ -149,19 +149,19 @@ def file_score(request):
 #     myscorefile=predfile(fname)
 #     return render(request,"index.html")
 #     import pandas as pd
-#     with BytesIO() as b:
-#         # Use the StringIO object as the filehandle.
-#         writer = pd.ExcelWriter(b, engine='xlsxwriter')
-#         myscorefile.to_excel(writer, sheet_name='Sheet1')
-#         writer.save()
-#         # Set up the Http response.
-#         filename = 'Results.xlsx'
-#         response = HttpResponse(
-#         b.getvalue(),
-#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#             )
-#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
-#         return response
+    with BytesIO() as b:
+        # Use the StringIO object as the filehandle.
+        writer = pd.ExcelWriter(b, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name='Sheet1')
+        writer.save()
+        # Set up the Http response.
+        filename = 'Results.xlsx'
+        response = HttpResponse(
+        b.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        return response
 
 
 
