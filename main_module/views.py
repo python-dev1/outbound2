@@ -1,6 +1,8 @@
 from django.shortcuts import render,HttpResponse
 
 # Create your views here.
+from random import randint as ml_metric
+
 
 def index(request):
     return render(request,"login.html")
@@ -115,22 +117,31 @@ def file_score(request):
 #     obj=files.objects.last()
    
     fname=obj.myfile.path
-    myscorefile=predfile(fname)
+    df = pd.read_excel(fname)
+    index = df.index
+    total = len(index)
+    centros = []
+    for x in range((total)):
+        centros.append(ml_metric(1, 100))
+    scores_=pd.Series(centros)
+    df['Score']=scores_
+    return HttpResponse(df.to_html())
+#     myscorefile=predfile(fname)
 #     return render(request,"index.html")
-    import pandas as pd
-    with BytesIO() as b:
-        # Use the StringIO object as the filehandle.
-        writer = pd.ExcelWriter(b, engine='xlsxwriter')
-        myscorefile.to_excel(writer, sheet_name='Sheet1')
-        writer.save()
-        # Set up the Http response.
-        filename = 'Results.xlsx'
-        response = HttpResponse(
-        b.getvalue(),
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            )
-        response['Content-Disposition'] = 'attachment; filename=%s' % filename
-        return response
+#     import pandas as pd
+#     with BytesIO() as b:
+#         # Use the StringIO object as the filehandle.
+#         writer = pd.ExcelWriter(b, engine='xlsxwriter')
+#         myscorefile.to_excel(writer, sheet_name='Sheet1')
+#         writer.save()
+#         # Set up the Http response.
+#         filename = 'Results.xlsx'
+#         response = HttpResponse(
+#         b.getvalue(),
+#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+#             )
+#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
+#         return response
 
 
 
@@ -171,7 +182,7 @@ def registration2(request):
     obj.save()
     return render(request, "login2.html")
 
-from random import randint as ml_metric
+
 def login_check(request):
     input_email=request.POST['email']
     input_password=request.POST['password']
