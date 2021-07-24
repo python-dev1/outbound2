@@ -121,7 +121,7 @@ def file_score(request):
     for x in range(total):
         centros.append(ml_metric(1, 100))
     scores_ = pd.Series(centros)
-    df['Score'] = scores_
+  
     
     
     df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
@@ -134,6 +134,7 @@ def file_score(request):
     ages = pd.Series(myage)
     df["Age"] = ages
     df["Age"].fillna((df["Age"].median()), inplace=True)
+    df['Score'] = scores_
     
     
     
