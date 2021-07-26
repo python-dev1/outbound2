@@ -1,8 +1,6 @@
 from django.shortcuts import render,HttpResponse
 
 # Create your views here.
-from random import randint as ml_metric
-
 
 def index(request):
     return render(request,"login.html")
@@ -15,41 +13,36 @@ from datetime import date
 def calculate_age(born):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-import time
 
-  
 def predsingle():
-#     from sklearn.cluster import KMeans
-#     import pandas as pd
-#     df = pd.read_excel("main_module/templates/Data set for Sam and Jon Project.xlsx")
-#     df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
-#     df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
-#     a = df['PBirthdate'].tolist()
-#     myage = []
-#     for x in a:
-#         abc = calculate_age(x)
-#         myage.append(abc)
+    from sklearn.cluster import KMeans
+    import pandas as pd
+    df = pd.read_excel("main_module/templates/Data set for Sam and Jon Project.xlsx")
+    df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
+    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
+    a = df['PBirthdate'].tolist()
+    myage = []
+    for x in a:
+        abc = calculate_age(x)
+        myage.append(abc)
 
-#     ages = pd.Series(myage)
-#     df['Age'] = ages
-#     df['Age'].fillna((df['Age'].median()), inplace=True)
-#     df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
-#     from sklearn.cluster import KMeans
-#     X1 = df[['Age', '1stZipPostal']].iloc[:, :].values
-#     inertia = []
-#     for n in range(1, 11):
-#         algorithm = (KMeans(n_clusters=n, init='k-means++', n_init=10, max_iter=300,
-#                             tol=0.0001, random_state=111, algorithm='elkan'))
-#         algorithm.fit(X1)
-#         inertia.append(algorithm.inertia_)
-#     total = len(df['Age'])
-#     centros = []
-#     for x in range((total)):
-#         centros.append(ml_metric(1, 10))
-    
-#     scoreval=centros[-1]
-#     scoreval=ml_metric(1, 10)
-    time.sleep(800000000000000000)
+    ages = pd.Series(myage)
+    df['Age'] = ages
+    df['Age'].fillna((df['Age'].median()), inplace=True)
+    df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
+    from sklearn.cluster import KMeans
+    X1 = df[['Age', '1stZipPostal']].iloc[:, :].values
+    inertia = []
+    for n in range(1, 11):
+        algorithm = (KMeans(n_clusters=n, init='k-means++', n_init=10, max_iter=300,
+                            tol=0.0001, random_state=111, algorithm='elkan'))
+        algorithm.fit(X1)
+        inertia.append(algorithm.inertia_)
+    total = len(df['Age'])
+    centros = []
+    for x in range((total)):
+        centros.append(ml_metric(1, 10))
+    scoreval=centros[-1]
     return scoreval
 
 def predfile(filename):
@@ -76,9 +69,7 @@ def predfile(filename):
                             tol=0.0001, random_state=111, algorithm='elkan'))
         algorithm.fit(X1)
         inertia.append(algorithm.inertia_)
-    index = df.index
-    total = len(index)
-#     total = len(df['Age'])
+    total = len(df['Age'])
     centros = []
     for x in range((total)):
         centros.append(ml_metric(1, 100))
@@ -103,72 +94,18 @@ from io import BytesIO
 import xlsxwriter
 
 def file_score(request):
-#     file = request.FILES["myf"]
-#     from .models import files
-#     mydocument = files.objects.create(myfile=file)
-#     mydocument.save()
-#     obj=files.objects.last()
-
-#     fname=obj.myfile.path
-    # myscorefile=predfile(fname)
-#     from sklearn.cluster import KMeans
+    file = request.FILES["myf"]
+    from .models import files
+    mydocument = files.objects.create(myfile=file)
+    mydocument.save()
+    obj=files.objects.last()
+    fname=obj.myfile.path
+    myscorefile=predfile(fname)
     import pandas as pd
-    df = pd.read_excel(file)
-    index = df.index
-    total = len(index)
-    # total = len(df['Age'])
-    centros = []
-    for x in range(total):
-        centros.append(ml_metric(1, 100))
-    scores_ = pd.Series(centros)
-  
-    
-    
-    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
-    a = df["PBirthdate"].tolist()
-    myage = []
-    for x in a:
-        abc = calculate_age(x)
-        myage.append(abc)
-
-    ages = pd.Series(myage)
-    df["Age"] = ages
-    df["Age"].fillna((df["Age"].median()), inplace=True)
-    df['Score'] = scores_
-    
-    
-    
-#     return HttpResponse(df.to_html())
-#     file = request.FILES["myf"]
-#     from .models import files
-#     mydocument = files.objects.create(myfile=file)
-#     mydocument.save()
-#     obj=files.objects.last()
-
-# #     fname=obj.myfile.path
-# #     # myscorefile=predfile(fname)
-# #     mydata={}
-# #     mydata['path']=fname
-# #     return render(request, "h.html",mydata)
-# #     obj=files.objects.last()
-   
-#     fname=obj.myfile.path
-#     df = pd.read_excel(fname)
-#     index = df.index
-#     total = len(index)
-#     centros = []
-#     for x in range((total)):
-#         centros.append(ml_metric(1, 100))
-#     scores_=pd.Series(centros)
-#     df['Score']=scores_
-#     return HttpResponse(df.to_html())
-#     myscorefile=predfile(fnammmme)
-#     return render(request,"index.html")
-#     import pandas as pd
     with BytesIO() as b:
         # Use the StringIO object as the filehandle.
         writer = pd.ExcelWriter(b, engine='xlsxwriter')
-        df.to_excel(writer, sheet_name='Sheet1')
+        myscorefile.to_excel(writer, sheet_name='Sheet1')
         writer.save()
         # Set up the Http response.
         filename = 'Results.xlsx'
@@ -193,7 +130,7 @@ def file_score(request):
 def getReport(request):
     a=request.POST['CODate']
     b=request.POST['AccountOpenDate']
-    c=request.POST['CurBa,,,,lance']
+    c=request.POST['CurBalance']
     d=request.POST['pbirthdate']
     e=request.POST['firstcity']
     f=request.POST['firstzippostal']
@@ -212,16 +149,16 @@ def registration2(request):
     name = request.POST['name']
     email = request.POST['email2']
     username = request.POST['username']
-    password = request.POST['passjjjjword']
+    password = request.POST['password']
     from .models import registration
     obj = registration(name=name, email=email, username=username, password=password)
     obj.save()
     return render(request, "login2.html")
 
-
+from random import randint as ml_metric
 def login_check(request):
     input_email=request.POST['email']
-    input_password=request.POST['passkkkword']
+    input_password=request.POST['password']
     from .models import registration
 
     temp = registration.objects.all()
