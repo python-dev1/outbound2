@@ -5,11 +5,11 @@ from random import randint as ml_metric
 
 
 def index(request):
-    return render(request,"logimmmn.html")
+    return render(request,"login.html")
 
 
 def registration(request):
-    return render(request,"registratiommmn.html")
+    return render(request,"registration.html")
 from datetime import date
 
 def calculate_age(born):
@@ -50,7 +50,7 @@ def predsingle():
 #     scoreval=centros[-1]
 #     scoreval=ml_metric(1, 10)
     time.sleep(800000000000000000)
-#     return scoreval
+    return scoreval
 
 def predfile(filename):
     from sklearn.cluster import KMeans
@@ -90,7 +90,7 @@ def predfile(filename):
 
 
 def login(request):
-    return render(request,"logkkkkkkkkkkkkin.html")
+    return render(request,"login.html")
 
 
 def single(request):
