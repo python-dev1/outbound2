@@ -69,7 +69,9 @@ def predfile(filename):
                             tol=0.0001, random_state=111, algorithm='elkan'))
         algorithm.fit(X1)
         inertia.append(algorithm.inertia_)
-    total = len(df['Age'])
+#     total = len(df['Age'])
+    index = df.index
+    total = len(index)
     centros = []
     for x in range((total)):
         centros.append(ml_metric(1, 100))
@@ -95,12 +97,32 @@ import xlsxwriter
 
 def file_score(request):
     file = request.FILES["myf"]
-    from .models import files
-    mydocument = files.objects.create(myfile=file)
-    mydocument.save()
-    obj=files.objects.last()
+#     from .models import files
+#     mydocument = files.objects.create(myfile=file)
+#     mydocument.save()
+#     obj=files.objects.last()
+    df = pd.read_excel(file)
+    df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
+    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
+    a = df['PBirthdate'].tolist()
+    myage = []
+    for x in a:
+        abc = calculate_age(x)
+        myage.append(abc)
+    ages = pd.Series(myage)
+    df['Age'] = ages
+    df['Age'].fillna((df['Age'].median()), inplace=True)
+    df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
     fname=obj.myfile.path
-    myscorefile=predfile(fname)
+    index = df.index
+    total = len(index)
+    centros = []
+    for x in range((total)):
+        centros.append(ml_metric(1, 100))
+    scores_=pd.Series(centros)
+    df['Score']=scores_
+    
+#     myscorefile=predfile(fname)
     import pandas as pd
     with BytesIO() as b:
         # Use the StringIO object as the filehandle.
