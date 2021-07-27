@@ -114,6 +114,7 @@ def file_score(request):
 #     from sklearn.cluster import KMeans
     import pandas as pd
     df = pd.read_excel(file)
+    df=df[:400]
     index = df.index
     total = len(index)
     
