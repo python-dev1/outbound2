@@ -114,7 +114,7 @@ def file_score(request):
 #     from sklearn.cluster import KMeans
     import pandas as pd
     df = pd.read_excel(file)
-    df=df[:400]
+    df=df[:5000]
     index = df.index
     total = len(index)
     
@@ -147,7 +147,9 @@ def file_score(request):
     
     
     
-    return HttpResponse(df.to_html())
+#     return HttpResponse(df.to_html())
+
+
 #     file = request.FILES["myf"]
 #     from .models import files
 #     mydocument = files.objects.create(myfile=file)
@@ -176,19 +178,19 @@ def file_score(request):
 #     import pandas as pd
 
 
-#     with BytesIO() as b:
-#         # Use the StringIO object as the filehandle.
-#         writer = pd.ExcelWriter(b, engine='xlsxwriter')
-#         df.to_excel(writer, sheet_name='Sheet1')
-#         writer.save()
-#         # Set up the Http response.
-#         filename = 'Results.xlsx'
-#         response = HttpResponse(
-#         b.getvalue(),
-#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#             )
-#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
-#         return response
+    with BytesIO() as b:
+        # Use the StringIO object as the filehandle.
+        writer = pd.ExcelWriter(b, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name='Sheet1')
+        writer.save()
+        # Set up the Http response.
+        filename = 'Results.xlsx'
+        response = HttpResponse(
+        b.getvalue(),
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        return response
     
     
        
