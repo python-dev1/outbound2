@@ -113,7 +113,7 @@ def file_score(request):
     df['Age'] = ages
     df['Age'].fillna((df['Age'].median()), inplace=True)
     df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
-    fname=obj.myfile.path
+#     fname=obj.myfile.path
     index = df.index
     total = len(index)
     centros = []
@@ -127,7 +127,7 @@ def file_score(request):
     with BytesIO() as b:
         # Use the StringIO object as the filehandle.
         writer = pd.ExcelWriter(b, engine='xlsxwriter')
-        myscorefile.to_excel(writer, sheet_name='Sheet1')
+        df.to_excel(writer, sheet_name='Sheet1')
         writer.save()
         # Set up the Http response.
         filename = 'Results.xlsx'
