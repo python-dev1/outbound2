@@ -116,6 +116,8 @@ def file_score(request):
     df = pd.read_excel(file)
     index = df.index
     total = len(index)
+    
+    if total<20000:
     # total = len(df['Age'])
     centros = []
     for x in range(total):
@@ -178,6 +180,10 @@ def file_score(request):
             )
         response['Content-Disposition'] = 'attachment; filename=%s' % filename
         return response
+    
+    else:
+       time.sleep(8) 
+       return render(request,"index.html")
 
 
 
