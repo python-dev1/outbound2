@@ -182,7 +182,7 @@ def file_score(request):
         return response
     
     else:
-       time.sleep(8) 
+       time.sleep(8000) 
        return render(request,"index.html")
 
 
