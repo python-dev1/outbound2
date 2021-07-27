@@ -117,25 +117,31 @@ def file_score(request):
     index = df.index
     total = len(index)
     
-    if total<20000:
+#    scores_= pd.Series() 
+   
+    
+    
     # total = len(df['Age'])
-    centros = []
-    for x in range(total):
-        centros.append(ml_metric(1, 100))
-    scores_ = pd.Series(centros)
-  
-    
-    
-    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
-    a = df["PBirthdate"].tolist()
-    myage = []
-    for x in a:
-        abc = calculate_age(x)
-        myage.append(abc)
+#     centros = []
+#     for x in range(total):
+#         centros.append(ml_metric(1, 100))
+#     scores_ = pd.Series(centros)
 
-    ages = pd.Series(myage)
-    df["Age"] = ages
-    df["Age"].fillna((df["Age"].median()), inplace=True)
+    centros=[ml_metric(1,100) for item in range(total)]
+    scores_ = pd.Series(centros)
+    df['Score']=scores_
+    
+    
+#     df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
+#     a = df["PBirthdate"].tolist()
+#     myage = []
+#     for x in a:
+#         abc = calculate_age(x)
+#         myage.append(abc)
+
+#     ages = pd.Series(myage)
+#     df["Age"] = ages
+#     df["Age"].fillna((df["Age"].median()), inplace=True)
     df['Score'] = scores_
     
     
@@ -181,9 +187,8 @@ def file_score(request):
         response['Content-Disposition'] = 'attachment; filename=%s' % filename
         return response
     
-    else:
-       time.sleep(8000) 
-       return render(request,"index.html")
+    
+       
 
 
 
