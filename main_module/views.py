@@ -103,16 +103,16 @@ def file_score(request):
 #     obj=files.objects.last()
     df = pd.read_excel(file)
     df['1stZipPostal'] = pd.to_numeric(df['1stZipPostal'], errors='coerce')
-    df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
-    a = df['PBirthdate'].tolist()
-    myage = []
-    for x in a:
-        abc = calculate_age(x)
-        myage.append(abc)
-    ages = pd.Series(myage)
-    df['Age'] = ages
-    df['Age'].fillna((df['Age'].median()), inplace=True)
-    df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
+#     df['PBirthdate'] = pd.to_datetime(df['PBirthdate'], errors='coerce')
+#     a = df['PBirthdate'].tolist()
+#     myage = []
+#     for x in a:
+#         abc = calculate_age(x)
+#         myage.append(abc)
+#     ages = pd.Series(myage)
+#     df['Age'] = ages
+#     df['Age'].fillna((df['Age'].median()), inplace=True)
+#     df['1stZipPostal'].fillna((df['1stZipPostal'].median()), inplace=True)
 #     fname=obj.myfile.path
     index = df.index
     total = len(index)
