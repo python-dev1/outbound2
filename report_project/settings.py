@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['outbound1predictor.herokuapp.com']
 
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880 # make it 5Mb instead of 2Mb
 
 # Application definition
 
