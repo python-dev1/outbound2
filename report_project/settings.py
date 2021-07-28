@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-nua$27$isjnq)#^5g0+vvjnua=++tfmrwr$c7bbw9o*v@1dh+s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['outbound1predictor.herokuapp.com']
+ALLOWED_HOSTS = ['outbound1predictor.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,13 +122,34 @@ USE_TZ = True
 
 import os
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_ROOT= os.path.join(BASE_DIR,'media')
-MEDIA_URL='/media/'
+# STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
+
+
+# MEDIA_ROOT= os.path.join(BASE_DIR,"media")
+# MEDIA_URL='/media/'
+
+from google.oauth2 import service_account
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR,'credential.json')
+)
+
+
+DEFAULT_FILE_STORAGE = 'report_project.gcloud.GoogleCloudMediaFileStorage'
+GS_PROJECT_ID = 'outbound1predictor'
+GS_BUCKET_NAME = 'outbound1_bucket'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
